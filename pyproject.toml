@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "egc-compliance"
+version = "0.1.0"
+requires-python = ">=3.11"
+description = "ASHRAE 90.1-2022 Energy Code Compliance report generator"
+dependencies = [
+    "pydantic>=2.0",
+    "jinja2>=3.1",
+    "click>=8.1",
+    "eppy>=0.5.63",
+    "requests>=2.31",
+    "rich>=13.0",
+]
+
+[project.scripts]
+egc-compliance = "egc_compliance.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-cov", "ruff", "mypy"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["egc_compliance*"]
+
+[tool.setuptools.package-data]
+egc_compliance = ["report/templates/*.j2"]
